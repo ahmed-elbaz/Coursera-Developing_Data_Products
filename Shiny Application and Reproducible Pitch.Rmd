@@ -1,0 +1,59 @@
+---
+title: "Shiny Application and Reproducible Pitch"
+author: "Ahmed Elbaz"
+date: "July 13, 2018"
+output: ioslides_presentation
+---
+
+## Overview
+
+- This presentation is part of the Developing Data Products course final project submission.
+
+- It is an R Markdown documentation generated with R studio to explain how basic mathematical operation application that is created in shiny works. 
+
+- The shiny appliation can be found in https://elbaza286.shinyapps.io/shiny_application_and_reproducible_pitch/
+
+- The ui and server codes used in this project can be found in
+
+## The Application
+
+- The purpose of the application is mainly to take two numbers from the user and show the ouptut of four arithmatic operation on them(Addition, subtraction, multiplication and division).
+- The output for a certain operation will be "NA" in case of invalid inputs so please assure that the inputs are numbers and not letters. 
+
+## ui code
+In this slide part of ui code was provided noting that the link for complete ui codes were provided in the first slide
+```{r, echo = TRUE, eval=FALSE}
+library(shiny)
+shinyUI(fluidPage(
+  # Application title
+  titlePanel("Basic Mathematical Operations on two numbers"),
+  # Sidebar with a two numeric inputs for 2 numbers
+  sidebarLayout(
+    sidebarPanel(
+       textInput("number1",
+                   "Enter the first number:",
+                   value = 1),
+       textInput("number2",
+                    "Enter the second number:",
+                    value = 1)
+
+```
+
+## Server code
+In this slide part of server code was provided noting that the link for complete server code were provided in the first slide
+```{r echo = TRUE, eval=FALSE}
+library(shiny)
+
+shinyServer(function(input, output) {
+
+     summation <- reactive({
+        x <- as.numeric(input$number1)
+        y <- as.numeric(input$number2)
+        x + y
+    })
+    output$output1 <- renderText({
+        summation()
+    })
+})
+```
+
